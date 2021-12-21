@@ -1,0 +1,1677 @@
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+     <!-- c3 stylesheet -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css"/>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <title>우리마을 상권분석</title>
+
+   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+       <!--fontawesome-->
+       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+       <link rel="stylesheet" href="font/font/flaticon.css">
+  </head>
+
+
+   <style>
+
+
+body {
+    position: relative;
+    overflow-x:hidden;
+    background: #F5FFFA;   <!-- 본문 색상 -->
+    font-family: 'Roboto', sans-serif;
+}
+
+a:hover{
+  color:white;
+  text-decoration:none;
+}
+
+body,
+html { height: 100%;}
+
+
+
+
+
+/*---------------------------------
+sidebar
+----------------------*/
+
+#sidebar-wrapper {
+    z-index: 1000;
+    height: 100%;
+   width:0px;
+   left: -50px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #222e3c;
+    transition: all 0.5s ease;
+}
+
+#sidebar-wrapper::-webkit-scrollbar {
+    width: 8px;
+    background: #222e3c;
+}
+
+#sidebar-wrapper::-webkit-scrollbar-thumb {
+    background-color:#989898;
+   border-radius:10px;
+}
+
+
+.sidebar-brand {
+    font-weight: 600;
+    font-size: 1.15rem;
+    padding: 1.15rem 1.5rem;
+    display: block;
+    color: #f8f9fa;
+}
+.sidebar-header{
+   text-transform:capitalize;
+    padding: 1.5rem 1.5rem .375rem!important;
+    font-size: 14px;
+    color: #ced4da;
+}
+
+.navbar-nav > li > a ,.submenu-box ul li a{
+    color:gray!important;
+    text-transform: capitalize;
+    font-size: 14px;
+     padding:10px 10px 10px 20px!important;
+    display: block;
+    font-weight: 400;
+    position: relative;
+    z-index: 2;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: .2px;
+}
+
+.submenu-box ul li a{
+ padding:4px 10px 4px 20px!important;
+  color:#c1c1c1!important;
+}
+
+
+
+.navbar-nav > li > a.active{
+     color: #e9ecef!important;
+    background: linear-gradient(90deg,rgba(59,125,221,.1),rgba(59,125,221,.0875) 50%,transparent);
+    border-left:4px solid #3b7ddd;
+}
+
+.navbar-nav .has-sub > a.collapsed::after {
+    transition: 0.4s ease;
+}
+
+.navbar-nav .has-sub > a.collapsed::after {
+    color:gray;
+    font-size: 10px;
+    content: "\f078";
+}
+.navbar-nav .has-sub > a.collapsed::after {
+   color:gray;
+}
+
+.navbar-nav .has-sub > a::after {
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    color:gray;
+    display: block;
+    content: "\f077";
+    font-family: 'Font Awesome\ 5 Free';
+    font-weight: 900;
+    font-size: 13px;
+    line-height: 30px;
+    margin-top: -15px;
+}
+
+
+
+#wrapper.toggled {
+    padding-left: 270px;
+}
+
+
+
+.toggled#sidebar-wrapper {
+    width:270px!important;
+    height: 100%;
+     left: 0px;
+    overflow-y:auto;
+    overflow-x:hidden;
+    transition: all 0.5s ease;
+}
+
+.navbar-nav li{
+  display:block!important;
+  margin:2px 0px;
+}
+
+
+.nav-item .nav-link{
+    display:block;
+    color:white!important;
+   text-transform:capitalize;
+    text-decoration: none;
+    padding:6px 10px;
+    transition:0.4s ease;
+}
+
+.navbar-nav > li > a i:before{
+  margin:0px 5px 0px 0px;
+  font-size:14px;
+}
+
+
+/*---------------------------------
+sidebar
+----------------------*/
+
+
+
+
+
+
+/*---------------------------------
+  main-content
+----------------------*/
+
+#page-content-wrapper {
+    width: 100%;
+   transition: all 0.5s ease;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -270px;
+
+   transition: all 0.5s ease;
+}
+
+ .toggled#page-content-wrapper{
+  margin-left:270px;
+  transition: all 0.5s ease;
+ }
+
+ @media only screen and (min-width:992px){
+ .toggled#page-content-wrapper{
+    width:calc(100% - 270px);
+   }
+ }
+
+/*---------------------------------
+  main-content
+----------------------*/
+
+
+
+/*---------------------------------
+cross-bar animation
+----------------------*/
+
+
+.nav-icon1{
+  z-index: 999;
+  position:relative;
+  display: block;
+  width:23px;
+  margin:0px 30px 0px 25px;
+   cursor:pointer;
+  height: 25px;
+}
+
+
+.nav-icon1 span{
+  position:absolute;
+  top:0;
+  width:100%;
+  height:3px;
+  cursor:pointer;
+  background-color:#5d5d5d;
+  left:0;
+  transform:rotate(0deg);
+  transition:.30s ease-in-out;
+}
+
+.nav-icon1:hover span:nth-of-type(1){
+  top:-3px
+}
+
+.nav-icon1:hover span:nth-of-type(3){
+  top:19px;
+}
+
+.nav-icon1 span:nth-of-type(1){
+   top:0;
+}
+
+.nav-icon1 span:nth-of-type(2){
+   top:8px;
+}
+
+.nav-icon1 span:nth-of-type(3){
+   top:16px;
+}
+
+.nav-icon1.open span:nth-of-type(1){
+   top:8px;
+   transform:rotate(135deg);
+}
+
+.nav-icon1.open span:nth-of-type(2){
+   top:8px;
+   opacity:0;
+   left:-30px;
+}
+
+.nav-icon1.open span:nth-of-type(3){
+   top:8px;
+   transform:rotate(-135deg);
+}
+
+
+/*---------------------------------
+cross-bar animation
+----------------------*/
+
+
+
+/*---------------------------------
+header navbar design
+----------------------*/
+.my-navbar{
+  padding:0px;
+  background-color:#B0E0E6;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,.16);
+}
+
+.text-gray-600 {
+    color: #858796!important;
+}
+.nav-link .img-profile {
+    height:40px;
+    width:40px;
+}
+
+.navbar-nav > li > a >i{
+    font-size: 18px;
+    color:#b3b3b3;
+   margin:8px 0px 0px 0px;
+   padding:0px;
+}
+
+.badge-counter {
+    position: absolute;
+    transform:scale(.7);
+    transform-origin: top right;
+    right:6px;
+   margin-top:4px;
+}
+
+
+.dropdown, .dropleft, .dropright, .dropup {
+    position: relative;
+}
+
+.nav-flag, .nav-icon {
+    padding: .1rem .8rem;
+    display: block;
+    font-size: 1.5rem;
+    color: #6c757d;
+    transition: background .1s ease-in-out,color .1s ease-in-out;
+    line-height: 1.4;
+}
+
+
+.navbar-expand .navbar-nav .dropdown-menu {
+    position: absolute;
+}
+.navbar-nav .dropdown-menu {
+    box-shadow: 0 0.1rem 0.2rem rgba(0,0,0,.05);
+}
+.navbar-nav .dropdown-menu {
+    position: static;
+    float: none;
+}
+.dropdown-menu-lg {
+    min-width: 20rem;
+}
+
+
+.position-relative {
+    position: relative!important;
+}
+
+.nav-item .indicator {
+    background: #3b7ddd;
+    box-shadow: 0 0.1rem 0.2rem rgba(0,0,0,.05);
+    border-radius: 50%;
+    display: block;
+    height: 18px;
+    width: 18px;
+    padding: 1px;
+    position: absolute;
+    top: 0;
+    right: -8px;
+    text-align: center;
+    transition: top .1s ease-out;
+    font-size: .675rem;
+    color: #fff;
+}
+
+/*---------------------------------
+ header navbar design
+----------------------*/
+
+
+
+/*---------------------------------
+main-top card
+----------------------*/
+
+.card {
+    margin-bottom: 24px;
+   border:none;
+    box-shadow: 0 0 0.875rem 0 rgba(33,37,41,.05);
+}
+
+.card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
+}
+.card-title {
+    font-size: .875rem;
+    color: #495057;
+}
+
+.card-body h1{
+font-size: 1.75rem;
+font-weight: 400;
+    line-height: 1.2;
+    color: #000;
+}
+
+
+.text-gray-800 {
+    color: #5a5c69!important;
+   font-size: 1.75rem;
+   font-weight: 400;
+    line-height: 1.2;
+}
+.shadow-sm {
+    box-shadow: 0 .125rem .25rem 0 rgba(58,59,69,.2)!important;
+}
+
+
+.btn-sm {
+    padding: .25rem .5rem;
+    font-size: .875rem;
+    line-height: 1.5;
+    border-radius: .2rem;
+}
+
+
+.font-16 {
+    font-size: 16px;
+}
+
+
+
+/*---------------------------------
+main-top card
+----------------------*/
+
+
+
+
+/*---------------------------------
+main-table
+----------------------*/
+
+
+ .m-r-10 {
+    margin-right: 10px;
+}
+.btn-circle {
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+}
+
+.btn-info {
+    color: #fff;
+    background-color: #2962FF;
+    border-color: #2962FF;
+}
+
+.btn-orange {
+    color: #212529;
+    background-color: #fb8c00;
+    border-color: #fb8c00;
+}
+
+.btn-success {
+    color: #fff;
+    background-color: #36bea6;
+    border-color: #36bea6;
+}
+.btn-purple {
+    color: #fff;
+    background-color: #7460ee;
+    border-color: #7460ee;
+}
+
+.card .card-title {
+    position: relative;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+
+.card .card-subtitle {
+    font-weight: 300;
+    margin-bottom: 10px;
+    color: #a1aab2;
+     margin-top: -0.375rem;
+}
+
+
+.table td, .table th {
+    padding: 1rem;
+   font-size:14px;
+   color:#333;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
+.table h5{
+      font-size: 16px;
+     font-weight:600;
+     color:#585858;
+}
+
+
+
+/*---------------------------------
+main-table
+----------------------*/
+
+
+
+
+/*---------------------------------
+ footer
+----------------------*/
+
+footer.footer {
+    padding: 1rem .875rem;
+    direction: ltr;
+    background: #F5FFFA;
+}
+
+footer.footer ul {
+    margin:0px;
+   list-style:none;
+}
+
+.footer ul  li{
+ display:inline-block;
+ margin:0px 7px;
+}
+
+.text-muted {
+    color: #6c757d!important;
+   font-size:14px;
+}
+
+
+/*---------------------------------
+footer
+----------------------*/
+
+
+
+
+
+</style>
+
+
+  <body>
+
+
+  <div id="wrapper">
+   <div class="overlay"></div>
+
+        <!-- Sidebar -->
+    <nav class="fixed-top align-top" id="sidebar-wrapper" role="navigation">
+       <div class="simplebar-content" style="padding: 0px;">
+            <a class="sidebar-brand" href="index.html">
+          <span class="align-middle"><i class="far fa-lemon"></i> 　우리 동네 상권 정보</span>
+        </a>
+
+             <ul class="navbar-nav align-self-stretch">
+
+<!--    <li class="sidebar-header">                   Pages                </li>-->
+   <li class="">
+        <a class="nav-link text-left active"  role="button"
+        aria-haspopup="true" aria-expanded="false">
+       <i class="flaticon-bar-chart-1"></i>  DashBoard
+         </a>
+        </li>
+
+       <li class="has-sub">
+        <a class="nav-link collapsed text-left" href="#collapseExample2" role="button" data-toggle="collapse" >
+        <i class="flaticon-user"></i>   지표별 특성 파악
+         </a>
+        <div class="collapse menu mega-dropdown" id="collapseExample2">
+        <div class="dropmenu" aria-labelledby="navbarDropdown">
+      <div class="container-fluid ">
+                     <div class="row">
+                        <div class="col-lg-12 px-2">
+                           <div class="submenu-box">
+                              <ul class="list-unstyled m-0">
+                                 <li><a href="">연령</a></li>
+                                 <li><a href="">성별</a></li>
+                                  <li><a href="">시간대</a></li>
+                                  <li><a href="">주중/주말</a></li>
+<!--                                  <li><a href="">AngularJS</a></li> -->
+<!--                                 <li><a href="">ReactJS</a></li> -->
+                                  <!-- <li><a href="">Asp.net</a></li> -->
+                              </ul>
+                           </div>
+                        </div>
+
+                     </div>
+                  </div>
+           </div>
+        </div>
+       </li>
+       <li class="has-sub">
+        <a class="nav-link collapsed text-left" href="#collapseExample2" role="button" data-toggle="collapse" >
+        <i class="flaticon-user"></i>   상권별 특성 파악
+         </a>
+        <div class="collapse menu mega-dropdown" id="collapseExample2">
+        <div class="dropmenu" aria-labelledby="navbarDropdown">
+      <div class="container-fluid ">
+                     <div class="row">
+                        <div class="col-lg-12 px-2">
+                           <div class="submenu-box">
+                              <ul class="list-unstyled m-0">
+                                 <li><a href="">{{bd}}</a></li>
+                                 <li><a href="">{{gm}}</a></li>
+                                  <li><a href="">{{jt}}</a></li>
+                                  <li><a href="">{{kk}}</a></li>
+<!--                                  <li><a href="">AngularJS</a></li> -->
+<!--                                 <li><a href="">ReactJS</a></li> -->
+                                  <!-- <li><a href="">Asp.net</a></li> -->
+                              </ul>
+                           </div>
+                        </div>
+
+                     </div>
+                  </div>
+           </div>
+        </div>
+       </li>
+        <li class="">
+        <a class="nav-link text-left"  role="button" >
+
+       <i class="flaticon-bar-chart-1"></i> <!-- setting -->
+         </a>
+        </li>
+
+       <li class="">
+        <a class="nav-link text-left"  role="button" >
+       <i class="flaticon-bar-chart-1"></i> <!-- invoice -->
+         </a>
+        </li>
+      <li class="">
+        <a class="nav-link text-left"  role="button" >
+       <i class="flaticon-bar-chart-1"></i> <!--  Bank -->
+         </a>
+        </li>
+<!--         <li class="sidebar-header">-->
+<!--                  tools and component-->
+<!--               </li>-->
+<!--            -->
+<!--            <li class=""> -->
+<!--        <a class="nav-link text-left"  role="button" >-->
+<!--       <i class="flaticon-bar-chart-1"></i>  ui element -->
+<!--         </a>-->
+<!--        </li>-->
+<!--        -->
+<!--          <li class=""> -->
+<!--        <a class="nav-link text-left"  role="button" >-->
+<!--       <i class="flaticon-bar-chart-1"></i>  form -->
+<!--         </a>-->
+<!--        </li>-->
+<!--          <li class=""> -->
+<!--        <a class="nav-link text-left"  role="button" >-->
+<!--       <i class="flaticon-bar-chart-1"></i>  table -->
+<!--         </a>-->
+<!--        </li>-->
+<!--        -->
+<!--          <li class="sidebar-header">-->
+<!--                  tools and component-->
+<!--               </li>-->
+<!--           <li class=""> -->
+<!--        <a class="nav-link text-left"  role="button" >-->
+<!--       <i class="flaticon-bar-chart-1"></i>  chart -->
+<!--         </a>-->
+<!--        </li>-->
+<!--        <li class=""> -->
+<!--        <a class="nav-link text-left"  role="button" >-->
+<!--       <i class="flaticon-map"></i>   map-->
+<!--         </a>-->
+<!--        </li>-->
+
+        </ul>
+
+
+         </div>
+
+
+    </nav>
+        <!-- /#sidebar-wrapper -->
+
+
+
+
+
+
+
+
+
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+
+
+         <div id="content">
+
+       <div class="container-fluid p-0 px-lg-0 px-md-0;">
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light my-navbar">
+
+          <!-- Sidebar Toggle (Topbar) -->
+            <div type="button"  id="bar" class="nav-icon1 hamburger animated fadeInLeft is-closed" data-toggle="offcanvas"> <!-- offcanvas -->
+               <span></span>
+             <span></span>
+             <span></span>
+            </div>
+
+
+          <!-- Topbar Search -->
+          <form class="d-none d-sm-inline-block form-inline navbar-search">
+            <div class="input-group">
+              <input type="text" class="form-control bg-light " placeholder="지역 검색 (예: 서울역)" aria-label="Search">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="button">
+                  <i class="fas fa-search fa-sm"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
+
+            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+            <li class="nav-item dropdown  d-sm-none">
+
+              <!-- Dropdown - Messages -->
+              <div class="dropdown-menu dropdown-menu-right p-3">
+                <form class="form-inline mr-auto w-100 navbar-search">
+                  <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small"
+               placeholder="Search for..." >
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search fa-sm"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </li>
+
+            <!-- Nav Item - Alerts -->
+           <li class="nav-item dropdown">
+                     <a class="nav-icon dropdown" href="#" id="alertsDropdown" data-toggle="dropdown" aria-expanded="false">
+                        <div class="position-relative">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell align-middle"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                           <span class="indicator">4</span>
+                        </div>
+                     </a>
+                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right py-0" aria-labelledby="alertsDropdown">
+                        <div class="dropdown-menu-header">
+                            4 New Notifications
+                        </div>
+                        <div class="list-group">
+                           <a href="#" class="list-group-item">
+                              <div class="row no-gutters align-items-center">
+                                 <div class="col-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle text-danger"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                                 </div>
+                                 <div class="col-10">
+                                    <div class="text-dark">Update completed</div>
+                                    <div class="text-muted small mt-1">Restart server 12 to complete the update.</div>
+                                    <div class="text-muted small mt-1">30m ago</div>
+                                 </div>
+                              </div>
+                           </a>
+
+                        </div>
+                        <div class="dropdown-menu-footer">
+                           <a href="#" class="text-muted">Show all notifications</a>
+                        </div>
+                     </div>
+           </li>
+            <!-- Nav Item - Messages -->
+<!--            <li class="nav-item">-->
+<!--              <a class="nav-link " href="#"-->
+<!--          role="button">-->
+<!--                <i class="fas fa-envelope"></i>-->
+<!--                &lt;!&ndash; Counter - Messages &ndash;&gt;-->
+<!--                <span class="badge badge-danger badge-counter">7</span>-->
+<!--              </a>-->
+<!--            </li>-->
+
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">우리마을 상권 분석서비스</span>
+<!--                <img class="img-profile rounded-circle" src="img/logo3.png">-->
+              </a>
+            </li>
+            <li class="nav-item dropdown">
+                     <a class="nav-icon dropdown" href="#" id="alertsDropdown" data-toggle="dropdown" aria-expanded="false">
+                           <span class="mr-2 d-none d-lg-inline text-gray-600 small">login</span>
+                     </a>
+                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right py-0" aria-labelledby="alertsDropdown">
+<!--                        <div class="dropdown-menu-header">-->
+<!--                            4 New Notifications-->
+<!--                        </div>-->
+                        <div class="list-group">
+                           <a href="#" class="list-group-item">
+                              <div class="row no-gutters align-items-center">
+<!--                                 <div class="col-2">-->
+<!--                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle text-danger"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>-->
+<!--                                 </div>-->
+                                 <div class="col-10">
+<!--                                    <div class="text-dark">Update completed</div>-->
+                                    <div class="text-muted small mt-1">my page</div>
+                                    <div class="text-muted small mt-1">login</div>
+                                    <div class="text-muted small mt-1">logout</div>
+                                 </div>
+                              </div>
+                           </a>
+
+                        </div>
+                        <div class="dropdown-menu-footer">
+                           <a href="#" class="text-muted">Show all notifications</a>
+                        </div>
+                     </div>
+            </li>
+
+          </ul>
+
+        </nav>
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid px-lg-4">
+<div class="row">
+<div class="col-md-12 mt-lg-4 mt-4">
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4;float:left;">
+            <h1 class="h3 mb-0 text-gray-800">전체 상권 비교</h1>
+            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i>
+         Generate Report</a>
+          </div>
+        </div>
+<!--<div class="col-md-12 mt-lg-4 mt-4">-->
+<!--          &lt;!&ndash; Page Heading &ndash;&gt;-->
+<!--          <div class="d-sm-flex align-items-center justify-content-between mb-4;float:left;">-->
+<!--            <h1 class="h4 mb-0 text-gray-600"> 상권별 매출 Top 10 지역 </h1>-->
+
+<!--          </div>-->
+<!--</div>-->
+<div class="col-md-12 mt-4">
+    <div class="card">
+        <div class="card-body">
+            <!-- title -->
+            <div class="d-md-flex align-items-center">
+                <div class="row">
+                    <i class="fas fa-map-marked-alt"></i>
+                    　
+                    <h4 class="card-title">상권별 매출 Top 10 지역</h4>
+<!--                                        <h5 class="card-subtitle">Overview of Top Selling Items</h5>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-md-12">
+       <div class="row">
+                           <div class="col-sm-3">
+                              <div class="card">
+                                 <div class="card-body">
+
+                                    <h5 class="card-title mb-4">{{bd}}</h5>
+                                                    <div id="pie1"></div>
+
+                                                    <div style="text-align:center">
+<!--                                                      <h5>-->
+<!--                                                      차트div 바깥에서도 색깔을 연결할 수 있다.-->
+<!--                                                      </h5>-->
+<!--                                                      <span id="text-apple">사과</span>-->
+<!--                                                      <span id="text-walnut">호두</span>-->
+<!--                                                      <span id="text-berry">블루베리</span>-->
+<!--                                                      <span id="text-cheese">치즈</span>-->
+<!--                                                      <span id="text-strawberry">딸기</span>-->
+                                                    </div>
+
+
+<!--                                                    <img style="max-width:100%; height:auto ;"-->
+<!--                                                         src="static/image/bd_amount_top10.png" width="350" height="300">-->
+
+<!--                                    <h1 class="display-5 mt-1 mb-3">2.382</h1>-->
+<!--                                    <div class="mb-1">-->
+<!--                                       <span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -3.65% </span>-->
+<!--                                       <span class="text-muted">Since last week</span>-->
+<!--                                    </div>-->
+                                 </div>
+                              </div>
+
+                           </div>
+                           <div class="col-sm-3">
+                              <div class="card">
+                                 <div class="card-body">
+                                    <h5 class="card-title mb-4">{{gm}}</h5>
+                                                <div id="pie2"></div>
+
+
+
+<!--                                    <h1 class="display-5 mt-1 mb-3">2.382</h1>-->
+<!--                                    <div class="mb-1">-->
+<!--                                       <span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -3.65% </span>-->
+<!--                                       <span class="text-muted">Since last week</span>-->
+<!--                                    </div>-->
+                                 </div>
+                              </div>
+
+                           </div>
+                           <div class="col-sm-3">
+                              <div class="card">
+                                 <div class="card-body">
+                                    <h5 class="card-title mb-4">{{jt}}</h5>
+                                            <div id="pie3"></div>
+
+
+
+<!--                                                <img style="max-width:100%; height:auto ;"-->
+<!--                                                     src="static/image/jt_amount_top10.png" width="350" height="300">-->
+<!--                                    <h1 class="display-5 mt-1 mb-3">2.382</h1>-->
+<!--                                    <div class="mb-1">-->
+<!--                                       <span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -3.65% </span>-->
+<!--                                       <span class="text-muted">Since last week</span>-->
+<!--                                    </div>-->
+                                 </div>
+                              </div>
+
+                           </div>
+                           <div class="col-sm-3">
+                              <div class="card">
+                                 <div class="card-body">
+                                    <h5 class="card-title mb-4">{{kk}}</h5>
+                                                    <div id="pie4"></div>
+
+<!--                                    <h1 class="display-5 mt-1 mb-3">$21.300</h1>-->
+<!--                                    <div class="mb-1">-->
+<!--                                       <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 6.65% </span>-->
+<!--                                       <span class="text-muted">Since last week</span>-->
+<!--                                    </div>-->
+                                 </div>
+                              </div>
+
+                           </div>
+
+
+                        </div>
+</div>
+
+
+
+                    <!-- column -->
+
+
+
+
+                    <div class="col-md-12 mt-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <!-- title -->
+                                <div class="d-md-flex align-items-center">
+                                    <div class="row">
+                                        <i class="fab fa-cc-visa"></i>
+                                        <h4 class="card-title">상권별 매출 Top 10 업종</h4>
+<!--                                        <h5 class="card-subtitle">Overview of Top Selling Items</h5>-->
+                                    </div>
+                                    <div class="ml-auto">
+                                        <div class="dl">
+                                            <select class="custom-select">
+                                                <option value="0" selected="">2020</option>
+                                                <option value="1">2019</option>
+<!--                                                <option value="2">{{jt}}</option>-->
+<!--                                                <option value="3">{{kk}}</option>-->
+                                            </select>
+                                        </div>
+                                        <div class="dl">
+                                            <select class="custom-select">
+                                                <option value="0" selected="">{{bd}}</option>
+                                                <option value="1">{{gm}}</option>
+                                                <option value="2">{{jt}}</option>
+                                                <option value="3">{{kk}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- title -->
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table v-middle">
+                                    <thead>
+                                        <tr class="bg-light">
+                                            <th class="border-top-0">상권</th>
+                                            <th class="border-top-0">기간</th>
+                                            <th class="border-top-0">업종</th>
+                                            <th class="border-top-0">매출액</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+<!--                                        for i in range ()-->
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">발달상권</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">2020</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">컴퓨터및주변장치판매</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">3,675,553,025,993</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+<!--&lt;!&ndash;                                            <td>Single Use</td>&ndash;&gt;-->
+<!--                                            <td>2020</td>-->
+<!--                                            <td>-->
+<!--                                                <label class="label label-danger">컴퓨터및주변장치판매</label>-->
+<!--                                            </td>-->
+<!--                                            <td>-->
+<!--                                                <label class="label label-danger">\3,675,553,025,993</label>-->
+<!--                                            </td>-->
+<!--&lt;!&ndash;                                            <td>46</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <td>356</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <h5 class="m-b-0">$2850.06</h5>&ndash;&gt;-->
+<!--                                            </td>-->
+                                        </tr>
+
+
+
+
+<!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">발달상권</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">2020</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">한식음식점</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">3,147,512,932,797</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">발달상권</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">2020</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">한식음식점</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">3,147,512,932,797</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">발달상권</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">2020</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">일반의류</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">1,973,097,458,108</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">발달상권</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">2020</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">의약품</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">1,375,917,120,824</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">발달상권</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">2020</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">편의점</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">1,277,998,199,529</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">발달상권</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">2020</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">커피-음료</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">951,361,431,224</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">발달상권</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">2020</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">화장품</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">947,421,620,859</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">발달상권</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">2020</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">수산물판매</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">899,966,462,696</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">발달상권</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">2020</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">반찬가게</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">826,959,621,854</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">발달상권</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">2020</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">호프-간이주점</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="m-r-10"></div>
+                                                    <div class="">
+                                                        <h4 class="m-b-0 font-16">720,879,940,011</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+        </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+
+<!--<div class="col-md-12 mt-lg-4 mt-4">-->
+<!--          &lt;!&ndash; Page Heading &ndash;&gt;-->
+<!--          <div class="d-sm-flex align-items-center justify-content-between mb-4;float:left;">-->
+<!--&lt;!&ndash;            <h1 class="h3 mb-0 text-gray-600">2019,2020 매출액 변화</h1>&ndash;&gt;-->
+
+<!--          </div>-->
+<!--            <div id="kk_amount_quar"></div>-->
+
+<!--</div>-->
+
+
+
+<div class="col-md-12">
+<!--       <div class="row">-->
+
+<!--                           <div class="col-sm-3">-->
+<!--                              <div class="card">-->
+<!--                                 <div class="card-body">-->
+<!--                                     <div id="chart_donut"></div>-->
+
+<!--                                                <img style="max-width:100%; height:auto ;"-->
+<!--                                                     src="static/image/service_rank_2019.png" width="350" height="300">-->
+<!--&lt;!&ndash;                                    <h1 class="display-5 mt-1 mb-3">2.382</h1>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <div class="mb-1">&ndash;&gt;-->
+<!--&lt;!&ndash;                                       <span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -3.65% </span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                       <span class="text-muted">Since last week</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
+<!--                                                <h5 class="card-title mb-4">　　　　　　　        <2019></h5>-->
+<!--                                 </div>-->
+<!--                              </div>-->
+
+<!--                           </div>-->
+<!--                           <div class="col-sm-3">-->
+<!--                              <div class="card">-->
+<!--                                 <div class="card-body">-->
+<!--                                                <img style="max-width:100%; height:auto ;"-->
+
+<!--                                                     src="static/image/service_rank_2020.png" width="350" height="300-->
+<!--                                                <h5 class="card-title mb-4">　　　　　　　　        <2020></h5>-->
+
+
+<!--&lt;!&ndash;                                    <h1 class="display-5 mt-1 mb-3">$21.300</h1>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <div class="mb-1">&ndash;&gt;-->
+<!--&lt;!&ndash;                                       <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 6.65% </span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                       <span class="text-muted">Since last week</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
+<!--                                  </div>-->
+<!--                              </div>-->
+
+<!--                           </div>-->
+
+
+<!--                        </div>-->
+</div>
+
+
+
+
+
+         <footer class="footer">
+            <div class="container-fluid">
+               <div class="row text-muted">
+                  <div class="col-6 text-left">
+                     <p class="mb-0">
+                        <a href="index.html" class="text-muted"><strong>TeamKL Design </strong></a> &copy
+                     </p>
+                  </div>
+                  <div class="col-6 text-right">
+                     <ul class="list-inline">
+                        <li class="footer-item">
+                           <a class="text-muted" href="#">Support</a>
+                        </li>
+                        <li class="footer-item">
+                           <a class="text-muted" href="#">Help Center</a>
+                        </li>
+                        <li class="footer-item">
+                           <a class="text-muted" href="#">Privacy</a>
+                        </li>
+                        <li class="footer-item">
+                           <a class="text-muted" href="#">Terms</a>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </footer>
+
+        </div>
+      </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+
+    <!-- javascript -->
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script>
+<!--    <div id="kk_amount_quar"></div>-->
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+
+ <script>
+
+$('#bar').click(function(){
+   $(this).toggleClass('open');
+   $('#page-content-wrapper ,#sidebar-wrapper').toggleClass('toggled' );
+
+});
+  </script>
+
+    <script>
+    var chart = c3.generate({
+        bindto: "#chart1",
+        data: {
+            json: {
+                data1 :[50, 300, 200, 400, 500],
+                data2 :[10, 30, 20, 40, 50]
+            }
+        }
+    });
+    </script>
+    <div id="chart2"></div>
+<!--    <script>-->
+<!--    var chart = c3.generate({-->
+<!--        bindto: "#chart2",-->
+<!--        data: {-->
+<!--            json: {-->
+<!--                data1 :[10, 30, 200, 40, 0],-->
+<!--                data2 :[10, 30, 20, 40, 50]-->
+<!--            }-->
+<!--        }-->
+<!--    });-->
+<!--    </script>-->
+    <script>
+    var chart = c3.generate({
+        bindto: "#kk_amount_quar",
+         size: {
+            width: 620,
+            height: 450,
+          },
+        data: {
+            json: {
+                종로 :[186553018011, 172469071750, 182043145252, 301959180041, 157337465028, 259239790301, 224258463713, 233672291234],
+                이태원 :[102054928607, 102083170176, 104744164992, 122562979226, 159398241341, 74248773015, 73667495075, 77797157668],
+                명동 :[391001573608, 392306973005, 394781792776, 519358544746, 161523205082, 376621394364, 317802295995, 321471197701],
+                잠실 :[153906573289, 152732007138, 163336318613, 185236137810, 158621784351, 154618103600, 163666090252, 165170246481],
+                강남 :[168780617914, 173926103805, 178673833204, 223148474178, 156432685442, 167195866008, 159396238994, 162444836193],
+                동대문 :[190162361132, 204760984791, 187109815177, 350312851421, 162820259476, 246639327198, 207592772460, 224676802950],
+            },types: {
+          명동: 'area-spline',
+          이태원: 'area-spline'
+        },
+        }
+    });
+    </script>
+
+    <script>
+    var chart = c3.generate({
+        bindto: "#total_sg_compare3",
+        data: {
+            json: {
+                x :[0, 1, 2, 3, 4],
+                y :[0, 1, 2, 3, 4]
+            }
+        }
+    });
+    </script>
+    <script>
+    var chart = c3.generate({
+        bindto: "#pie1",
+        data: {
+            json: {
+            용산_전자상가_1:1543551363841,
+            용산_전자상가_2:1424870892887,
+            가락시장:929653870401,
+            동작구_노량진1동_1:919357929259,
+            신사동_가로수길:683631501415,
+            용산_전자상가_5:634618396346,
+            가산디지털단지역_3:612648233331,
+            홍익대학교_주변:576211053351,
+            강남역:542149877243,
+            압구정_로데오거리_2:493714425958
+             },type:"donut",
+        }
+    });
+    </script>
+    <script>
+
+    var chart = c3.generate({
+        bindto: "#pie2",
+        data: {
+            json: {
+                고무래로8길:95182212051,
+                영등포로35길:92690804482,
+                성수이로7길:86016365398,
+                도산대로81길:84717635890,
+                삼전로13길:84511339191,
+                영등포로27길:81691062860,
+                테헤란로81길:81043771364,
+                종로24길:77526512513,
+                아차산로11길:76904816542,
+                사평대로22길:73648323902
+               },type:"donut",
+                }
+        });
+    </script>
+    <script>
+    var chart = c3.generate({
+        bindto: "#pie3",
+        data: {
+            json: {
+                마포농수산물시장:568034469009,
+                    독산동_우시장:548955159392,
+                    영등포전통시장:424642509276,
+                    남대문시장:354819314457,
+                    평화시장:333182515569,
+                    경동시장:314838109339,
+                    청량리종합시장:232088598288,
+                    신중부시장:223454377922,
+                    서울약령시장:175488839728,
+                    방산종합시장:158084728785
+            },type:"donut",
+        }
+    });
+    </script>
+    <script>
+    var chart = c3.generate({
+        bindto: "#pie4",
+        data: {
+            json: {
+                명동_관광특구:1015894888060,
+                종로_관광특구:717170545248,
+                동대문_관광특구:678908902608,
+                강남_관광특구:489036941195,
+                잠실_관광특구:483454440333,
+                이태원_관광특구:225713425758
+            },type:"donut",
+        }
+    });
+    </script>
+
+
+  
+  </body>
+</html>
